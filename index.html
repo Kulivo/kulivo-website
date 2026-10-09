@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Kulivo · Know what your hotel kitchen throws away</title>
+  <meta name="description" content="Kulivo puts a camera and a scale at your kitchen's waste bin. Each discard is photographed, weighed and matched to a dish, so hotel kitchens can see food waste in kilos and rupees. Installed by Kulivo, ₹0 upfront setup cost.">
+  <meta name="theme-color" content="#103d30">
+  <meta property="og:title" content="Kulivo · Know what your kitchen throws away">
+  <meta property="og:description" content="Food waste measurement for hotel kitchens. A camera and a scale at the bin. Waste by dish, meal and station, in kilos and rupees.">
+  <meta property="og:image" content="./assets/img/og-kulivo.jpg">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+  <link rel="preload" href="./assets/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/dm-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/webp" media="(min-width: 961px)" href="./assets/img/hero-scene-wide-1280.webp" imagesrcset="./assets/img/hero-scene-wide-640.webp 640w, ./assets/img/hero-scene-wide-1280.webp 1280w" imagesizes="60vw">
+  <link rel="preload" as="image" type="image/webp" media="(max-width: 960px)" href="./assets/img/hero-scene-960.webp" imagesrcset="./assets/img/hero-scene-640.webp 640w, ./assets/img/hero-scene-960.webp 960w" imagesizes="100vw">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Kulivo, back to top"><img src="./assets/img/kulivo-logo-white.png" width="480" height="132" alt="Kulivo"></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Menu</span><span class="nav-toggle-bars" aria-hidden="true"></span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="#how">How it works</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#setup">Setup &amp; pilot</a>
+        <a href="#next">What’s next</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-accent btn-sm nav-cta" href="#contact">Start a pilot</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. HERO: what it is, who it's for, what it costs to start -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow eyebrow-light">Food waste measurement for hotel kitchens</p>
+          <h1 id="hero-title">Know what your kitchen throws away. <span>In kilos and in rupees.</span></h1>
+          <p class="hero-lead">Kulivo puts a camera and a scale at your waste bin. Each discard is photographed, weighed and matched to a dish, so your chefs know where to act and management can see what waste is worth.</p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="#contact">Start with one kitchen</a>
+            <a class="btn btn-ghost" href="#how">See how it works</a>
+          </div>
+          <ul class="hero-facts" aria-label="Setup and service commitments">
+            <li><strong>Installed</strong> by Kulivo</li>
+            <li><strong>₹0</strong> upfront setup cost</li>
+            <li><strong>99%</strong> uptime SLA</li>
+          </ul>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-photo">
+            <picture>
+              <source media="(max-width: 960px)" type="image/webp" srcset="./assets/img/hero-scene-640.webp 640w, ./assets/img/hero-scene-960.webp 960w" sizes="100vw" width="960" height="720">
+              <img src="./assets/img/hero-scene-wide-1280.webp" srcset="./assets/img/hero-scene-wide-640.webp 640w, ./assets/img/hero-scene-wide-1280.webp 1280w" sizes="60vw" width="1280" height="720" fetchpriority="high"
+                 alt="Illustration: a chef tips leftover rice from a tray into a green waste bin. The bin stands on a stainless-steel floor scale beneath a black Kulivo camera unit mounted on the tiled wall.">
+            </picture>
+            <figcaption class="photo-tags" aria-hidden="true"><span class="tag-cam">Camera</span><span class="tag-scale">Floor scale</span></figcaption>
+          </figure>
+          <div class="ticket" role="group" aria-label="Sample waste record, illustrative">
+            <div class="ticket-head"><span class="live-dot" aria-hidden="true"></span>Waste record <span class="ticket-sample">Sample</span></div>
+            <p class="ticket-dish">Rice</p>
+            <div class="ticket-nums"><p><strong>8.0</strong> kg</p><p><strong>₹800</strong> est. value</p></div>
+            <dl class="ticket-meta">
+              <div><dt>Meal</dt><dd>Dinner</dd></div>
+              <div><dt>Station</dt><dd>Buffet</dd></div>
+              <div><dt>Time</dt><dd>21:10</dd></div>
+            </dl>
+            <p class="ticket-foot">Image + weight linked · illustrative data</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. THE PROBLEM: why measurement matters -->
+    <section class="problem" aria-labelledby="problem-title">
+      <div class="wrap problem-grid">
+        <h2 id="problem-title">Food waste is easy to see in the bin. <span>Hard to see anywhere else.</span></h2>
+        <div class="problem-copy">
+          <p>By the end of service it’s gone. Was it rice or dal? A buffet refill or a prep trim? ₹800 or ₹8,000? Without a record, every conversation about waste starts with a guess.</p>
+          <p class="problem-turn">Kulivo turns each discard into a record your chef and your finance team can both trust: <strong>what it was, how much, when, where, and roughly what it cost.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS: three steps, nothing extra for the team -->
+    <section id="how" class="section how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">Your team discards as usual. Kulivo does the rest.</h2>
+        </div>
+        <div class="how-grid">
+          <figure class="how-image">
+            <img src="./assets/img/capture-1280.webp" srcset="./assets/img/capture-640.webp 640w, ./assets/img/capture-1280.webp 1280w" sizes="(min-width: 960px) 50vw, 100vw" width="1280" height="720" loading="lazy" decoding="async"
+                 alt="Illustration: close-up of hands scraping curry and chapatis from a tray into the bin, lit from above by the wall-mounted Kulivo unit. The bin sits on a floor scale.">
+          </figure>
+          <ol class="steps">
+            <li>
+              <span class="step-num" aria-hidden="true">01</span>
+              <div><h3>Discard as usual</h3><p>Food goes into the bin like it always has. The bin stands on a stainless-steel floor scale, beneath a camera mounted on the wall.</p></div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">02</span>
+              <div><h3>Captured automatically</h3><p>The camera takes an image and the scale takes the weight. AI matches the food to a dish from your menu, and Kulivo’s team reviews those matches.</p></div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">03</span>
+              <div><h3>On your dashboard</h3><p>Records arrive mostly in real time, tagged with the meal, station and time, and valued using configured food rates.</p></div>
+            </li>
+          </ol>
+        </div>
+        <p class="how-note"><span aria-hidden="true">✓</span> No item-by-item logging at the bin. No clipboards. No separate weighing.</p>
+      </div>
+    </section>
+
+    <!-- 4. DASHBOARD: what you actually see (current capabilities, sample data) -->
+    <section id="dashboard" class="section dash-section" aria-labelledby="dash-title">
+      <div class="wrap">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">The dashboard <span class="badge badge-today">Available today</span></p>
+            <h2 id="dash-title">From the bin to the numbers that matter.</h2>
+          </div>
+          <p>Waste by dish, meal and station. Estimated food value. Waste per cover. Trends and period comparisons. Every total traces back to the records behind it. Try the sample below.</p>
+        </div>
+
+        <div class="dash" aria-label="Sample Kulivo dashboard with illustrative data">
+          <div class="dash-bar">
+            <img src="./assets/img/kulivo-logo-white.png" width="480" height="132" alt="" class="dash-logo">
+            <span class="dash-title">Kitchen overview</span>
+            <span class="dash-sample">Sample data</span>
+          </div>
+          <div class="dash-body">
+            <div class="dash-toolbar">
+              <div>
+                <p class="dash-h">Dinner · Buffet station</p>
+                <p class="dash-sub">4 services · 100 covers each</p>
+              </div>
+              <fieldset class="seg">
+                <legend class="sr-only">Show dish</legend>
+                <input type="radio" name="dish" id="dish-all" value="all" checked><label for="dish-all">All dishes</label>
+                <input type="radio" name="dish" id="dish-rice" value="rice"><label for="dish-rice">Rice</label>
+                <input type="radio" name="dish" id="dish-veg" value="vegetables"><label for="dish-veg">Mixed veg</label>
+                <input type="radio" name="dish" id="dish-dal" value="dal"><label for="dish-dal">Dal</label>
+              </fieldset>
+            </div>
+
+            <div class="metrics" aria-live="polite" aria-atomic="true">
+              <div class="metric"><span>Food wasted</span><strong id="m-weight">56<small> kg</small></strong></div>
+              <div class="metric metric-money"><span>Estimated food value</span><strong id="m-value">₹6,400</strong></div>
+              <div class="metric"><span>Waste per cover</span><strong id="m-cover">140<small> g</small></strong></div>
+              <div class="metric"><span>Records</span><strong id="m-records">12</strong></div>
+            </div>
+
+            <div class="dash-panels">
+              <div class="panel">
+                <div class="panel-head"><h3>Waste by service</h3><span>kg</span></div>
+                <div class="bars" id="trend" role="img" aria-label="Sample waste by service: Dinner 1, 13 kg; Dinner 2, 16 kg; Dinner 3, 12 kg; Dinner 4, 15 kg.">
+                  <div class="bar" style="--h:65%"><b>13</b><i></i><span>D1</span></div>
+                  <div class="bar" style="--h:80%"><b>16</b><i></i><span>D2</span></div>
+                  <div class="bar" style="--h:60%"><b>12</b><i></i><span>D3</span></div>
+                  <div class="bar" style="--h:75%"><b>15</b><i></i><span>D4</span></div>
+                </div>
+              </div>
+              <div class="panel">
+                <div class="panel-head"><h3>Where it adds up</h3><span>4 services</span></div>
+                <ul class="rank" id="rank">
+                  <li><span>Rice</span><strong>32 kg</strong><i style="--w:100%"></i></li>
+                  <li><span>Mixed vegetables</span><strong>14 kg</strong><i style="--w:43.75%"></i></li>
+                  <li><span>Dal</span><strong>10 kg</strong><i style="--w:31.25%"></i></li>
+                </ul>
+                <p class="insight" id="insight">Rice is 57% of recorded waste.</p>
+              </div>
+              <div class="panel panel-records">
+                <div class="panel-head"><h3>Latest records</h3><span>Dinner 4</span></div>
+                <table class="records">
+                  <caption class="sr-only">Sample records from Dinner 4</caption>
+                  <thead><tr><th scope="col">Time</th><th scope="col">Dish</th><th scope="col" class="num">Weight</th><th scope="col" class="num">Est. value</th></tr></thead>
+                  <tbody id="records">
+                    <tr><td>21:10</td><th scope="row">Rice</th><td class="num">8 kg</td><td class="num">₹800</td></tr>
+                    <tr><td>21:02</td><th scope="row">Mixed vegetables</th><td class="num">4 kg</td><td class="num">₹600</td></tr>
+                    <tr><td>20:48</td><th scope="row">Dal</th><td class="num">3 kg</td><td class="num">₹330</td></tr>
+                  </tbody>
+                </table>
+                <div class="exports" aria-label="Export options in the dashboard"><span>Export CSV</span><span>Print / PDF</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="dash-note">Illustrative interface built from current dashboard capabilities. All numbers are fictional. Food value uses sample rates (rice ₹100/kg, mixed vegetables ₹150/kg, dal ₹110/kg); waste per cover uses cover counts entered by the kitchen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WHERE WASTE HIDES: four scenarios, all visible -->
+    <section id="kitchen" class="section kitchen" aria-labelledby="kitchen-title">
+      <div class="wrap">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">Across the kitchen</p>
+            <h2 id="kitchen-title">Four kinds of waste. Four different fixes.</h2>
+          </div>
+          <p>A buffet return and a preparation loss need different responses. The record shows what was thrown away and when. Your team brings the reason.</p>
+        </div>
+        <ul class="scenarios">
+          <li class="scenario">
+            <img src="./assets/img/waste-buffet-surplus-640.webp" srcset="./assets/img/waste-buffet-surplus-640.webp 640w, ./assets/img/waste-buffet-surplus-960.webp 960w" sizes="(min-width: 1180px) 25vw, (min-width: 620px) 50vw, 100vw" width="640" height="360" loading="lazy" decoding="async" alt="Illustration: a chef carries a tray of leftover rice from the buffet counter, with its chafing dishes, towards the Kulivo bin and scale.">
+            <div class="scenario-body">
+              <h3>Buffet surplus</h3>
+              <p class="look"><span>Look for</span>Dishes that keep coming back after service.</p>
+              <p class="consider"><span>Consider</span>Batch sizes and the timing of the final refill.</p>
+            </div>
+          </li>
+          <li class="scenario">
+            <img src="./assets/img/waste-preparation-640.webp" srcset="./assets/img/waste-preparation-640.webp 640w, ./assets/img/waste-preparation-960.webp 960w" sizes="(min-width: 1180px) 25vw, (min-width: 620px) 50vw, 100vw" width="640" height="360" loading="lazy" decoding="async" alt="Illustration: a chef chops carrots and cauliflower at a prep counter, with the Kulivo bin and scale behind.">
+            <div class="scenario-body">
+              <h3>Preparation</h3>
+              <p class="look"><span>Look for</span>Ingredients behind repeated prep losses.</p>
+              <p class="consider"><span>Consider</span>Trimming practice, usable yield and prep quantities.</p>
+            </div>
+          </li>
+          <li class="scenario">
+            <img src="./assets/img/waste-plate-returns-640.webp" srcset="./assets/img/waste-plate-returns-640.webp 640w, ./assets/img/waste-plate-returns-960.webp 960w" sizes="(min-width: 1180px) 25vw, (min-width: 620px) 50vw, 100vw" width="640" height="360" loading="lazy" decoding="async" alt="Illustration: a steward scrapes leftovers from a returned plate into the Kulivo bin, beside a counter stacked with used plates.">
+            <div class="scenario-body">
+              <h3>Plate returns</h3>
+              <p class="look"><span>Look for</span>Foods that guests leave behind again and again.</p>
+              <p class="consider"><span>Consider</span>Portions and guest feedback before changing the menu.</p>
+            </div>
+          </li>
+          <li class="scenario">
+            <img src="./assets/img/waste-spoilage-640.webp" srcset="./assets/img/waste-spoilage-640.webp 640w, ./assets/img/waste-spoilage-960.webp 960w" sizes="(min-width: 1180px) 25vw, (min-width: 620px) 50vw, 100vw" width="640" height="360" loading="lazy" decoding="async" alt="Illustration: a chef carries a crate of greens and tomatoes from the storage racks towards the Kulivo bin and scale.">
+            <div class="scenario-body">
+              <h3>Spoilage</h3>
+              <p class="look"><span>Look for</span>What gets discarded before it’s used, and how often.</p>
+              <p class="consider"><span>Consider</span>Ordering, stock rotation and holding practice.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. FOR YOUR ROLE: chef vs. management vs. finance -->
+    <section id="roles" class="section roles" aria-labelledby="roles-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Who it’s for</p>
+          <h2 id="roles-title">One record. Three ways to use it.</h2>
+        </div>
+        <div class="role-grid">
+          <article class="role">
+            <p class="role-who">Executive chef</p>
+            <h3>See which dishes come back, and when.</h3>
+            <ul>
+              <li>Waste by dish, meal and station</li>
+              <li>The image and weight behind every number</li>
+              <li>Repeat losses visible across services</li>
+            </ul>
+          </article>
+          <article class="role">
+            <p class="role-who">F&amp;B director</p>
+            <h3>Put waste in context.</h3>
+            <ul>
+              <li>Waste per cover, from the covers your team enters</li>
+              <li>Trends and period comparisons</li>
+              <li>CSV and Print / PDF reports for your reviews</li>
+            </ul>
+          </article>
+          <article class="role role-money">
+            <p class="role-who">GM, owner &amp; finance</p>
+            <h3>Waste in rupees, not just kilos.</h3>
+            <ul>
+              <li>Estimated food value, using configured food rates</li>
+              <li>₹0 upfront setup cost</li>
+              <li>Start with a single kitchen</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. VALUE: the finance buyer's question -->
+    <section id="value" class="section value" aria-labelledby="value-title">
+      <div class="wrap value-grid">
+        <div class="value-copy">
+          <p class="eyebrow eyebrow-light">Size the opportunity</p>
+          <h2 id="value-title">What could less waste be worth to you?</h2>
+          <p>Use your own numbers. If you don’t know your monthly waste value yet, estimate it from covers. Finding the real figure is what a pilot is for.</p>
+          <p class="fine fine-light">A planning estimate, not a forecast or a promised result. It shows gross food value only and leaves out Kulivo fees and implementation costs.</p>
+        </div>
+        <div class="calc">
+          <label for="waste-value" class="calc-label">Monthly value of food wasted</label>
+          <div class="money"><span aria-hidden="true">₹</span><input id="waste-value" type="number" inputmode="numeric" min="0" max="1000000000" step="1000" value="100000" aria-describedby="calc-help calc-error"></div>
+          <details class="estimate">
+            <summary>Don’t know it? Estimate from covers</summary>
+            <div class="estimate-grid">
+              <label>Covers per day<input id="est-covers" type="number" inputmode="numeric" min="0" step="10" placeholder="e.g. your daily covers"></label>
+              <label>Waste per cover (g)<input id="est-grams" type="number" inputmode="numeric" min="0" step="5" placeholder="your best guess"></label>
+              <label>Avg. food cost (₹/kg)<input id="est-rate" type="number" inputmode="numeric" min="0" step="10" placeholder="your blended rate"></label>
+              <button type="button" class="btn btn-sm btn-outline-light" id="est-apply">Use this estimate</button>
+            </div>
+            <p class="fine fine-light" id="est-out" aria-live="polite">Covers × grams × ₹/kg × 30 days. Use your own numbers; there are no built-in benchmarks here.</p>
+          </details>
+          <div class="range-row"><label for="reduction">Assumed reduction</label><output id="reduction-out" for="reduction">20%</output></div>
+          <input id="reduction" type="range" min="0" max="50" step="1" value="20">
+          <div class="calc-result" aria-live="polite" aria-atomic="true">
+            <span>Illustrative food value saved per year</span>
+            <strong id="annual">₹2,40,000</strong>
+            <p id="monthly">₹20,000 per month</p>
+          </div>
+          <p id="calc-help" class="fine fine-light">Monthly waste value × assumed reduction × 12.</p>
+          <p id="calc-error" class="calc-error" hidden>Enter a monthly value between ₹0 and ₹100,00,00,000.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SETUP & PILOT: remove adoption risk, show the path -->
+    <section id="setup" class="section setup" aria-labelledby="setup-title">
+      <div class="wrap">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">Setup and service</p>
+            <h2 id="setup-title">Easy to install. Built around your bin.</h2>
+          </div>
+          <p>We handle the installation and setup. From mounting the unit to getting the station ready, Kulivo takes care of it—so your team can focus on running the kitchen.</p>
+        </div>
+        <ul class="commit">
+          <li><strong>By Kulivo</strong><h3>Installation and setup</h3><p>Our team handles installation, configuration and checks that the station is ready.</p></li>
+          <li><strong>₹0</strong><h3>Upfront setup cost</h3><p>Get started without an upfront setup charge.</p></li>
+          <li><strong>99%</strong><h3>Uptime SLA</h3><p>System availability backed by a 99% uptime commitment.</p></li>
+        </ul>
+
+        <div class="pilot">
+          <div class="pilot-head">
+            <h3>Start with one kitchen.</h3>
+            <p>A pilot is the simplest way to find out what your waste is and what it costs before you decide anything bigger.</p>
+          </div>
+          <ol class="pilot-steps">
+            <li><span aria-hidden="true">1</span><h4>Talk to us</h4><p>Choose the kitchen and the waste station. Agree what you want to understand.</p></li>
+            <li><span aria-hidden="true">2</span><h4>We install</h4><p>Kulivo mounts the camera, places the scale and bin, and sets up your menu and stations.</p></li>
+            <li><span aria-hidden="true">3</span><h4>Build a baseline</h4><p>Your team discards as usual. Waste builds up by dish, meal and station.</p></li>
+            <li><span aria-hidden="true">4</span><h4>Review and decide</h4><p>Look at the numbers together and decide what to change and whether to roll out further.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. WHAT'S NEXT: future vision, clearly separated -->
+    <section id="next" class="section next" aria-labelledby="next-title">
+      <div class="wrap">
+        <div class="next-intro">
+          <div>
+            <p class="eyebrow">What’s next <span class="badge badge-future">In development</span></p>
+            <h2 id="next-title">Next: from insight to action.</h2>
+            <p class="next-lead">We’re building the Kulivo companion: features that help your team act on what the data shows, and check whether a change worked. <strong>They aren’t available today.</strong> Scope and timing will be confirmed with pilot kitchens.</p>
+          </div>
+          <figure class="next-image">
+            <img src="./assets/img/team-review-640.webp" srcset="./assets/img/team-review-640.webp 640w, ./assets/img/team-review-1280.webp 1280w" sizes="(min-width: 960px) 40vw, 100vw" width="640" height="360" loading="lazy" decoding="async" alt="Illustration: an executive chef and a manager look at a bar chart on a tablet beside the Kulivo bin, scale and wall unit.">
+          </figure>
+        </div>
+
+        <div class="compare" role="group" aria-label="Available today compared with in development">
+          <div class="compare-col compare-today">
+            <h3><span class="badge badge-today">Available today</span> The foundation</h3>
+            <ul>
+              <li>Camera and floor-scale capture at the bin</li>
+              <li>AI dish matches, reviewed by Kulivo’s team</li>
+              <li>Dashboard by dish, meal and station</li>
+              <li>Estimated food value and waste per cover</li>
+              <li>Trends and period comparisons</li>
+              <li>CSV and Print / PDF reports</li>
+              <li>Installation by Kulivo, ₹0 upfront setup, 99% uptime SLA</li>
+            </ul>
+          </div>
+          <div class="compare-col compare-future">
+            <h3><span class="badge badge-future">In development</span> The companion</h3>
+            <ul class="future-list">
+              <li><strong>Kitchen briefings</strong><span>Recurring patterns flagged with the evidence. For example: “Rice surplus after four dinners in a row.”</span></li>
+              <li><strong>Recommendations</strong><span>A suggested change for the chef to review, such as a smaller final refill.</span></li>
+              <li><strong>Team action plans</strong><span>Who does what, at which service, and for how long.</span></li>
+              <li><strong>Follow-up reviews</strong><span>A comparison of similar services before and after a change. The team decides what to keep.</span></li>
+            </ul>
+            <p class="fine">Examples are illustrative product direction, not customer results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FAQ -->
+    <section id="faq" class="section faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div>
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-title">The practical bits.</h2>
+          <p class="faq-more">Something else? <a href="#contact">Ask us when you get in touch.</a></p>
+        </div>
+        <div class="faqs">
+          <details><summary>Does my team need to change how it works?</summary><p>Not at the bin. Food goes into the bin as usual. The camera above it and the scale beneath it capture each discard, so nobody has to log items by hand.</p></details>
+          <details><summary>What does installation involve?</summary><p>Kulivo mounts the camera unit on the wall above the waste bin and places the bin on a stainless-steel scale on the floor. Setup covers connecting the station, checking the camera and scale, and adding your menu. The details are agreed for your kitchen, and there is no upfront setup cost.</p></details>
+          <details><summary>Is the AI always right?</summary><p>AI suggests a dish match for each record, and Kulivo’s team currently reviews those matches. A match and its weight are the starting point. Your kitchen’s context explains why the food was wasted.</p></details>
+          <details><summary>How is the food value worked out?</summary><p>Estimated food value uses the food rates configured for your kitchen, multiplied by the recorded weight. Waste per cover uses the cover counts your team enters. Both are estimates of food value, not verified savings or profit.</p></details>
+          <details><summary>How quickly does data appear?</summary><p>Mostly in real time. Connectivity, processing and any review a record needs can affect when it’s ready.</p></details>
+          <details><summary>What can we export?</summary><p>The dashboard offers CSV exports and Print / PDF views, so you can take the numbers into your own reviews and reports.</p></details>
+          <details><summary>Which features on this page aren’t available yet?</summary><p>Capture, the dashboard and reporting are available today. Kitchen briefings, recommendations, team action plans and follow-up reviews are the companion features we’re building. They are not available today.</p></details>
+          <details><summary>Can we start with a single kitchen?</summary><p>Yes. That’s how we suggest starting. A pilot agrees the station, the team and what you want to learn before you consider a wider rollout.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CONTACT: the one conversion -->
+    <section id="contact" class="section contact" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow eyebrow-light">Start a pilot</p>
+          <h2 id="contact-title">Find out what your kitchen really throws away.</h2>
+          <p>Tell us about your hotel and the kitchen you’d like to start with. We’ll talk it through and plan a pilot around your service.</p>
+          <ul class="contact-points">
+            <li>One kitchen, one waste station to start</li>
+            <li>Installed and set up by Kulivo</li>
+            <li>₹0 upfront setup cost</li>
+          </ul>
+        </div>
+        <div class="form-card">
+          <form id="enquiry" novalidate>
+            <div class="field-row">
+              <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" required maxlength="100" autocomplete="name"></div>
+              <div class="field"><label for="f-role">Role</label>
+                <select id="f-role" name="role"><option>Executive chef</option><option>F&amp;B director / manager</option><option>General manager</option><option>Owner</option><option>Finance</option><option>Other</option></select></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required maxlength="200" autocomplete="email"></div>
+              <div class="field"><label for="f-phone">Phone <span class="opt">(optional)</span></label><input id="f-phone" name="phone" type="tel" maxlength="30" autocomplete="tel"></div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label for="f-hotel">Hotel or group</label><input id="f-hotel" name="hotel" required maxlength="200" autocomplete="organization"></div>
+              <div class="field"><label for="f-city">City</label><input id="f-city" name="city" maxlength="100" autocomplete="address-level2"></div>
+            </div>
+            <div class="field"><label for="f-focus">What would you most like to understand?</label>
+              <select id="f-focus" name="focus"><option>Our overall waste picture</option><option>Buffet surplus</option><option>Preparation waste</option><option>Plate returns</option><option>Spoilage</option><option>What waste is costing us</option></select></div>
+            <div class="field"><label for="f-note">Anything else <span class="opt">(optional)</span></label><textarea id="f-note" name="note" rows="3" maxlength="1000"></textarea></div>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+            <button class="btn btn-primary btn-block" type="submit">Prepare my enquiry</button>
+            <p class="fine form-privacy">This page doesn’t send or store your details. It prepares your enquiry so you can email, copy or download it.</p>
+          </form>
+          <div id="enquiry-ready" class="ready" hidden tabindex="-1">
+            <h3>Your enquiry is ready.</h3>
+            <p>Nothing has been sent yet. Choose how to share it with Kulivo:</p>
+            <div class="ready-actions">
+              <a class="btn btn-primary btn-sm" id="r-mail" href="#">Open in email app</a>
+              <button class="btn btn-outline btn-sm" type="button" id="r-copy">Copy text</button>
+              <button class="btn btn-outline btn-sm" type="button" id="r-download">Download .txt</button>
+            </div>
+            <label for="r-text" class="sr-only">Enquiry text</label>
+            <textarea id="r-text" rows="9" readonly></textarea>
+            <p class="fine" id="r-status" role="status"></p>
+            <button class="link-btn" type="button" id="r-edit">Edit details</button>
+          </div>
+          <noscript><p class="fine">The enquiry helper needs JavaScript. Please contact your Kulivo representative directly.</p></noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <img src="./assets/img/kulivo-logo-white.png" width="480" height="132" alt="Kulivo" class="footer-logo">
+      <p>Food waste measurement for hotel kitchens.</p>
+      <nav aria-label="Footer"><a href="#how">How it works</a><a href="#dashboard">Dashboard</a><a href="#setup">Setup &amp; pilot</a><a href="#next">What’s next</a><a href="#contact">Contact</a></nav>
+      <p class="footer-small">© 2026 Kulivo. Dashboard figures, records and examples on this page are illustrative sample data, not customer results. All kitchen scenes, people and product images are illustrations, not photographs of customer kitchens.</p>
+    </div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
