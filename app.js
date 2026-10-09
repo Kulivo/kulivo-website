@@ -150,14 +150,12 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
         Cal.ns[NS]('modal', { calLink, config: CAL_CONFIG });
       });
     });
-    // Warm up once the page is idle so the first click is instant (never blocks first paint).
-    const idle = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
-    window.addEventListener('load', () => idle(loadCal, { timeout: 5000 }), { once: true });
+    // No idle preload: embed.js (and its third-party cookie) loads only on intent: hover, focus, touch or click.
   }
 
 
   /* ---- Chef Raghu (LemonSlice AI avatar) ----
-     Loaded after page load + idle so it never delays first paint. Starts minimized; a call only
+     Loaded on first interaction (or 6 s after load) so it never delays first paint. Starts minimized; a call only
      starts when the visitor opens it. While minimized it steps aside (fades out) whenever a CTA,
      the calculator, the enquiry form, the footer or the Cal.com pop-up is behind it. */
   if (AVATAR_AGENT_ID) {
@@ -220,9 +218,17 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
       setInterval(queue, 1500); // catches the widget opening/closing inside its shadow DOM
       queue();
     };
-    const idleAvatar = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
-    const start = () => idleAvatar(mount, { timeout: 4000 });
-    if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+    // Load on the visitor's first interaction (scroll, tap, pointer, key), or 6 s after page load at the latest.
+    const idleAvatar = window.requestIdleCallback || (fn => setTimeout(fn, 1));
+    const EVENTS = ['scroll', 'pointerdown', 'pointermove', 'touchstart', 'keydown'];
+    let armed = true, fallback = 0;
+    const go = () => {
+      if (!armed) return; armed = false; clearTimeout(fallback);
+      EVENTS.forEach(ev => removeEventListener(ev, go, { passive: true }));
+      idleAvatar(mount, { timeout: 2000 });
+    };
+    const arm = () => { EVENTS.forEach(ev => addEventListener(ev, go, { passive: true, once: true })); fallback = setTimeout(go, 6000); };
+    if (document.readyState === 'complete') arm(); else addEventListener('load', arm, { once: true });
   }
 
   /* ---- Calculator → enquiry ---- */
