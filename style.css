@@ -481,3 +481,39 @@ input[type=range]{width:100%;margin:12px 0 0;accent-color:var(--turmeric);height
 .hero-book a:hover{color:var(--turmeric-2)}
 .done-book{margin-top:4px}
 .done-book a{color:var(--moss);font-weight:600}
+
+/* Mobile & touch polish (v2.3): tap targets >=44px on phones/tablets and any touch screen, body text >=14px on <=960px, landscape menu. Desktop with a mouse is unchanged. */
+@media (max-width:960px), (pointer:coarse){
+  .brand{display:inline-flex;align-items:center;min-height:44px}
+  .header-cta,.btn-sm,.link-btn{min-height:44px}
+  .hero-book a{padding:10px 0}
+  .seg label{display:inline-flex;align-items:center;justify-content:center;min-height:44px}
+  .estimate summary{padding:11px 0}
+  .estimate-grid input{min-height:44px;font-size:16px}
+  input[type=range]{height:44px}
+  .chip-row label{min-height:44px}
+  .site-footer nav a{display:inline-flex;align-items:center;min-height:44px}
+  .footer-mail{padding:11px 0}
+  .done-book a,.faq-more a{display:inline-block;padding:10px 0}
+}
+@media (pointer:coarse) and (min-width:961px){
+  .site-nav a:not(.btn){padding:12px 0}
+}
+@media (max-width:960px){
+  .site-nav{max-height:calc(100vh - 72px);max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain}
+  .site-footer nav{gap:0 22px}
+  .seg label{font-size:14px}
+  .estimate-grid label{font-size:14px}
+  .fine,.value-copy .fine,.hint,.dash-note,.footer-small,.metric span,.records,.calc-error,.ticket-nums{font-size:14px}
+  .records thead th{font-size:13px}
+  .ticket-foot{font-size:12px}
+  .ticket-meta dt{font-size:11px}
+}
+@media (max-width:370px){
+  .seg{flex-wrap:wrap;border-radius:22px}
+  .seg label{flex:1 1 40%;font-size:14px;padding:6px 8px}
+  .records th,.records td{padding:8px 2px}
+}
+@media (max-width:960px) and (orientation:landscape) and (max-height:500px){
+  .hero-photo img{aspect-ratio:16/9}
+}
