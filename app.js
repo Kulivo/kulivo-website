@@ -179,6 +179,8 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
       ls.setAttribute('custom-minimized-width', min.w); ls.setAttribute('custom-minimized-height', min.h);
       ls.setAttribute('custom-active-width', act.w); ls.setAttribute('custom-active-height', act.h);
       cap.style.bottom = `${GAP + min.h + 6}px`;
+      // The widget only says "Join" on narrow screens; force it on the small tile (e.g. landscape phones) so the label fits.
+      if (min.w < 144) ls.setAttribute('video-button-text', 'Join'); else ls.removeAttribute('video-button-text');
     };
     const check = () => {
       raf = 0;
