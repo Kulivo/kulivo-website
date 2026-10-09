@@ -12,7 +12,7 @@ const WHATSAPP_NUMBER = '';
 const WHATSAPP_TEXT = "Hi Kulivo, I'd like to know more about the 30-day free pilot for my kitchen.";
 const BOOKING_URL = '';
 const LEAD_EMAIL = 'info@kulivo.ai';
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + LEAD_EMAIL;
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf833';
 /* Kulivo v2 — small progressive enhancements. Page content is fully readable without JS. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
