@@ -6,11 +6,11 @@
        WhatsApp button (floating and inline).
    - BOOKING_URL: the full Google Calendar appointment-schedule link
        (https://calendar.app.google/...). Leave '' to hide every
-       "Book a 20-min call" button.
+       "Book a 30-min call" button.
    ========================================================================== */
 const WHATSAPP_NUMBER = '';
 const WHATSAPP_TEXT = "Hi Kulivo, I'd like to know more about the 30-day free pilot for my kitchen.";
-const BOOKING_URL = '';
+const BOOKING_URL = 'https://calendar.app.google/je7n1twqj7SaQdXt7';
 const LEAD_EMAIL = 'info@kulivo.ai';
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf833';
 /* Kulivo v2 — small progressive enhancements. Page content is fully readable without JS. */
@@ -97,8 +97,8 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf8
     }
   }
   if (bookUrl) {
-    reachRow.append(link('reach-link', bookUrl, '<span aria-hidden="true">📅</span> Book a 20-min call', 'Book a 20-minute call (opens Google Calendar)'));
-    $$('[data-cta-row]').forEach(row => row.append(link('btn btn-outline', bookUrl, 'Book a 20-min call', 'Book a 20-minute call (opens Google Calendar)')));
+    reachRow.append(link('reach-link', bookUrl, '<span aria-hidden="true">📅</span> Book a 30-min call', 'Book a 30-minute call (opens Google Calendar)'));
+    $$('[data-cta-row]').forEach(row => row.append(link('btn btn-outline', bookUrl, 'Book a 30-min call', 'Book a 30-minute call (opens Google Calendar)')));
   }
 
   /* ---- Calculator → enquiry ---- */
