@@ -14,6 +14,10 @@ const WHATSAPP_TEXT = "Hi Kulivo, I'd like to know more about the 30-day free pi
 const BOOKING_CAL_LINK = 'kulivo/30min';
 const LEAD_EMAIL = 'info@kulivo.ai';
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf833';
+/* Chef Raghu: LemonSlice AI video avatar. Leave AVATAR_AGENT_ID '' to remove it.
+   The widget script is pinned (bump the version deliberately after testing). */
+const AVATAR_AGENT_ID = 'agent_b78c7d9cf717e483';
+const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34/dist/index.js';
 /* Kulivo v2 — small progressive enhancements. Page content is fully readable without JS. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
@@ -149,6 +153,74 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf8
     // Warm up once the page is idle so the first click is instant (never blocks first paint).
     const idle = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
     window.addEventListener('load', () => idle(loadCal, { timeout: 5000 }), { once: true });
+  }
+
+
+  /* ---- Chef Raghu (LemonSlice AI avatar) ----
+     Loaded after page load + idle so it never delays first paint. Starts minimized; a call only
+     starts when the visitor opens it. While minimized it steps aside (fades out) whenever a CTA,
+     the calculator, the enquiry form, the footer or the Cal.com pop-up is behind it. */
+  if (AVATAR_AGENT_ID) {
+    const GAP = 20, HEADER = 72, ACTIVE = { w: 252, h: 377 };
+    const AVOID = '.btn, [data-book], .reach-link, .faq-more a, .seg, .calc, .form-card, .site-footer';
+    let ls, cap, tucked = null, raf = 0;
+    const sizes = () => {
+      const small = innerWidth <= 620 || innerHeight <= 500;
+      const min = small ? { w: 96, h: 144 } : { w: 144, h: 216 };
+      // Active size keeps the 252:377 ratio and stays inside the viewport, below the sticky header.
+      let h = Math.min(ACTIVE.h, innerHeight - HEADER - GAP - 12), w = Math.round(h * ACTIVE.w / ACTIVE.h);
+      if (w > innerWidth - 2 * GAP) { w = innerWidth - 2 * GAP; h = Math.round(w * ACTIVE.h / ACTIVE.w); }
+      return { min, act: { w: Math.max(w, 120), h: Math.max(Math.round(h), 180) } };
+    };
+    const box = () => ls.shadowRoot && ls.shadowRoot.querySelector('.fixed.bottom-5.right-5');
+    const isActive = () => { const b = box(); return !!b && b.getBoundingClientRect().height > sizes().min.h + 8; };
+    const applySizes = () => {
+      const { min, act } = sizes();
+      ls.setAttribute('custom-minimized-width', min.w); ls.setAttribute('custom-minimized-height', min.h);
+      ls.setAttribute('custom-active-width', act.w); ls.setAttribute('custom-active-height', act.h);
+      cap.style.bottom = `${GAP + min.h + 6}px`;
+    };
+    const check = () => {
+      raf = 0;
+      if (!ls) return;
+      const active = isActive();
+      let hide = false;
+      if (!active) {
+        const { min } = sizes();
+        const z = { l: innerWidth - GAP - Math.max(min.w, cap.offsetWidth) - 12, t: innerHeight - GAP - min.h - cap.offsetHeight - 18 };
+        hide = !!document.querySelector('cal-modal-box') || $$(AVOID).some(el => {
+          const r = el.getBoundingClientRect();
+          return r.width && r.bottom > z.t && r.top < innerHeight && r.right > z.l && r.left < innerWidth;
+        });
+      }
+      if (hide !== tucked) { tucked = hide; ls.classList.toggle('avatar-tucked', hide); }
+      cap.classList.toggle('avatar-cap-off', hide || active);
+    };
+    const queue = () => { if (!raf) raf = requestAnimationFrame(check); };
+    const mount = () => {
+      ls = document.createElement('lemon-slice-widget');
+      const attrs = { 'agent-id': AVATAR_AGENT_ID, 'show-minimize-button': 'true', 'initial-state': 'minimized',
+        'video-button-color-hex': '#103d30', 'video-button-color-opacity': '0.9' };
+      Object.entries(attrs).forEach(([k, v]) => ls.setAttribute(k, v));
+      cap = document.createElement('p');
+      cap.className = 'avatar-cap';
+      cap.textContent = 'Ask Chef Raghu (AI)';
+      applySizes();
+      document.body.append(ls, cap);
+      const s = document.createElement('script');
+      s.type = 'module'; s.src = AVATAR_SCRIPT;
+      s.onerror = () => { ls.remove(); cap.remove(); ls = null; };
+      document.head.append(s);
+      addEventListener('scroll', queue, { passive: true });
+      addEventListener('resize', () => { if (ls) { applySizes(); queue(); } }, { passive: true });
+      new MutationObserver(queue).observe(document.body, { childList: true });
+      ls.addEventListener('click', () => setTimeout(queue, 400));
+      setInterval(queue, 1500); // catches the widget opening/closing inside its shadow DOM
+      queue();
+    };
+    const idleAvatar = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
+    const start = () => idleAvatar(mount, { timeout: 4000 });
+    if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
   }
 
   /* ---- Calculator → enquiry ---- */
