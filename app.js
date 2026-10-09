@@ -4,13 +4,14 @@
    - WHATSAPP_NUMBER: international format, digits only, no "+" or spaces,
        e.g. '919876543210' for +91 98765 43210. Leave '' to hide every
        WhatsApp button (floating and inline).
-   - BOOKING_URL: the full Google Calendar appointment-schedule link
-       (https://calendar.app.google/...). Leave '' to hide every
-       "Book a 30-min call" button.
+   - BOOKING_CAL_LINK: the Cal.com event path ("username/event"), e.g.
+       'kulivo/30min' for https://cal.com/kulivo/30min. Every
+       "Book a 30-min call" link opens it as a Cal.com pop-up (normal link to
+       cal.com without JS or if the embed fails). Leave '' to remove them.
    ========================================================================== */
 const WHATSAPP_NUMBER = '';
 const WHATSAPP_TEXT = "Hi Kulivo, I'd like to know more about the 30-day free pilot for my kitchen.";
-const BOOKING_URL = 'https://calendar.app.google/je7n1twqj7SaQdXt7';
+const BOOKING_CAL_LINK = 'kulivo/30min';
 const LEAD_EMAIL = 'info@kulivo.ai';
 const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf833';
 /* Kulivo v2 — small progressive enhancements. Page content is fully readable without JS. */
@@ -73,7 +74,6 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf8
   /* ---- Contact options driven by config (render nothing when empty) ---- */
   const waDigits = String(WHATSAPP_NUMBER).replace(/\D/g, '');
   const waUrl = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(WHATSAPP_TEXT)}` : '';
-  const bookUrl = /^https:\/\//.test(BOOKING_URL) ? BOOKING_URL : '';
   const WA_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>';
   const link = (cls, href, html, label) => {
     const a = document.createElement('a');
@@ -96,9 +96,59 @@ const FORM_ENDPOINT = 'https://formsubmit.co/ajax/badfdf22978df7da3be8be2268aaf8
       ['#contact', '.site-footer'].forEach(s => { const el = $(s); if (el) io.observe(el); });
     }
   }
-  if (bookUrl) {
-    reachRow.append(link('reach-link', bookUrl, '<span aria-hidden="true">📅</span> Book a 30-min call', 'Book a 30-minute call (opens Google Calendar)'));
-    $$('[data-cta-row]').forEach(row => row.append(link('btn btn-outline', bookUrl, 'Book a 30-min call', 'Book a 30-minute call (opens Google Calendar)')));
+  /* ---- Booking: Cal.com pop-up (lazy-loaded embed, plain link as fallback) ---- */
+  const calLink = /^[\w-]+\/[\w-]+$/.test(BOOKING_CAL_LINK) ? BOOKING_CAL_LINK : '';
+  const bookLinks = $$('[data-book]');
+  if (!calLink) {
+    $$('[data-book-wrap]').forEach(el => el.remove());
+    bookLinks.forEach(a => a.remove());
+  } else {
+    const NS = 'kulivo', CAL_URL = 'https://cal.com/' + calLink, CAL_CONFIG = { layout: 'month_view', theme: 'light' };
+    bookLinks.forEach(a => {
+      a.href = CAL_URL; a.dataset.calLink = calLink; a.dataset.calNamespace = NS;
+      a.dataset.calConfig = JSON.stringify(CAL_CONFIG);
+      a.setAttribute('aria-haspopup', 'dialog');
+    });
+    let calState = 'idle'; // idle → loading → ready | failed
+    let pending = null;     // a link clicked before the embed finished loading
+    const loadCal = () => {
+      if (calState !== 'idle') return;
+      calState = 'loading';
+      // Cal.com's official embed loader snippet.
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement('script')).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
+      Cal('init', NS, { origin: 'https://app.cal.com' });
+      Cal.ns[NS]('ui', {
+        theme: 'light',
+        cssVarsPerTheme: { light: { 'cal-brand': '#133E30', 'cal-brand-emphasis': '#0e2f24', 'cal-brand-text': '#ffffff' } },
+        hideEventTypeDetails: false,
+        layout: 'month_view'
+      });
+      const script = document.querySelector('script[src="https://app.cal.com/embed/embed.js"]');
+      const failed = () => {
+        if (calState === 'ready') return;
+        calState = 'failed';
+        if (pending) { const url = pending.href; pending = null; const w = window.open(url, '_blank'); if (w) w.opener = null; else location.href = url; }
+      };
+      if (!script) { failed(); return; }
+      script.addEventListener('load', () => { calState = 'ready'; pending = null; });
+      script.addEventListener('error', failed);
+      setTimeout(() => { if (calState === 'loading' && pending) failed(); }, 8000);
+    };
+    bookLinks.forEach(a => {
+      ['pointerenter', 'focus', 'touchstart'].forEach(ev => a.addEventListener(ev, loadCal, { once: true, passive: true }));
+      a.addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return; // let "open in new tab" work
+        loadCal();
+        if (calState === 'failed') return;   // plain link to cal.com
+        e.preventDefault();                   // stop the new tab; the pop-up opens instead
+        if (calState === 'ready') return;     // embed.js's own click handler opens the pop-up
+        pending = a;                          // still loading: queue the pop-up, it opens once embed.js runs
+        Cal.ns[NS]('modal', { calLink, config: CAL_CONFIG });
+      });
+    });
+    // Warm up once the page is idle so the first click is instant (never blocks first paint).
+    const idle = window.requestIdleCallback || (fn => setTimeout(fn, 2500));
+    window.addEventListener('load', () => idle(loadCal, { timeout: 5000 }), { once: true });
   }
 
   /* ---- Calculator → enquiry ---- */

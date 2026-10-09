@@ -462,3 +462,10 @@ input[type=range]{width:100%;margin:12px 0 0;accent-color:var(--turmeric);height
   .cta-short{display:inline}
   .brand img{width:96px}
 }
+
+/* Cal.com booking links (v2.2) */
+.hero-book{margin-top:8px;font-size:15px;color:var(--on-dark-muted)}
+.hero-book a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:6px 0}
+.hero-book a:hover{color:var(--turmeric-2)}
+.done-book{margin-top:4px}
+.done-book a{color:var(--moss);font-weight:600}
