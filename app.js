@@ -72,7 +72,7 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
     if (![c, g, k].every(n => Number.isFinite(n) && n >= 0)) { $('#est-out').textContent = 'Fill in all three fields with your own numbers.'; return; }
     const monthly = Math.round(c * g / 1000 * k * 30);
     wv.value = Math.min(monthly, 1e9); calc();
-    $('#est-out').textContent = `${c.toLocaleString('en-IN')} covers × ${g} g × ${inr.format(k)}/kg × 30 days ≈ ${inr.format(monthly)} a month. Added above.`;
+    $('#est-out').textContent = `${c.toLocaleString('en-IN')} covers × ${g} g per cover ÷ 1,000 × ${inr.format(k)}/kg × 30 days ≈ ${inr.format(monthly)} a month. Added above.`;
   });
 
   /* ---- Contact options driven by config (render nothing when empty) ---- */
@@ -157,10 +157,10 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
   /* ---- Chef Raghu (LemonSlice AI avatar) ----
      Loaded on first interaction (or 6 s after load) so it never delays first paint. Starts minimized; a call only
      starts when the visitor opens it. While minimized it steps aside (fades out) whenever a CTA,
-     the calculator, the enquiry form, the footer or the Cal.com pop-up is behind it. */
+     an FAQ question, the calculator, the enquiry form, the footer or the Cal.com pop-up is behind it. */
   if (AVATAR_AGENT_ID) {
     const GAP = 20, HEADER = 72, ACTIVE = { w: 252, h: 377 };
-    const AVOID = '.btn, [data-book], .reach-link, .faq-more a, .seg, .calc, .form-card, .site-footer';
+    const AVOID = '.btn, [data-book], .reach-link, .faq-more a, .faqs summary, .seg, .calc, .form-card, .site-footer';
     let ls, cap, tucked = null, raf = 0;
     const sizes = () => {
       const small = innerWidth <= 620 || innerHeight <= 500;
@@ -177,8 +177,8 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
       ls.setAttribute('custom-minimized-width', min.w); ls.setAttribute('custom-minimized-height', min.h);
       ls.setAttribute('custom-active-width', act.w); ls.setAttribute('custom-active-height', act.h);
       cap.style.bottom = `${GAP + min.h + 6}px`;
-      // The widget only says "Join" on narrow screens; force it on the small tile (e.g. landscape phones) so the label fits.
-      if (min.w < 144) ls.setAttribute('video-button-text', 'Join'); else ls.removeAttribute('video-button-text');
+      // Keep the button label as "Talk" at every size, including the small tile on phones.
+      ls.setAttribute('video-button-text', 'Talk');
     };
     const check = () => {
       raf = 0;
@@ -200,11 +200,11 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
     const mount = () => {
       ls = document.createElement('lemon-slice-widget');
       const attrs = { 'agent-id': AVATAR_AGENT_ID, 'show-minimize-button': 'true', 'initial-state': 'minimized',
-        'video-button-color-hex': '#103d30', 'video-button-color-opacity': '0.9' };
+        'video-button-color-hex': '#103d30', 'video-button-color-opacity': '0.9', 'video-button-text': 'Talk' };
       Object.entries(attrs).forEach(([k, v]) => ls.setAttribute(k, v));
       cap = document.createElement('p');
       cap.className = 'avatar-cap';
-      cap.textContent = 'Ask Chef Raghu (AI)';
+      cap.textContent = 'Questions? Ask Chef Raghu, our AI guide';
       applySizes();
       document.body.append(ls, cap);
       const s = document.createElement('script');
@@ -285,7 +285,7 @@ const AVATAR_SCRIPT = 'https://unpkg.com/@lemonsliceai/lemon-slice-widget@1.0.34
       improve: d.improve || '(not specified)', message: d.message || '(none)', page: location.href.split('#')[0],
       _subject: `New Kulivo pilot enquiry — ${d.hotel}`, _template: 'table', _captcha: 'false', _honey: $('#f-honey').value
     };
-    if (d.email) payload._autoresponse = 'Thanks for your interest in Kulivo’s 30-day free pilot. We’ll get back to you within one working day.';
+    if (d.email) payload._autoresponse = 'Thanks for your interest in Kulivo’s 30-day free pilot. We’ll get back to you within one working day. Want to talk sooner? Book a call: https://cal.com/kulivo/30min';
     else delete payload.email; // no email given → no autoresponse, nothing sent to an empty address
     btn.disabled = true; btn.setAttribute('aria-busy', 'true'); btn.textContent = 'Sending…';
     let ok = false;
